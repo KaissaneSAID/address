@@ -1,0 +1,43 @@
+{% block body %}
+<style>
+
+.carte{
+    background-color: white;
+    margin-left: 40px;
+    margin-top:5%;
+    width: 25%;
+    padding:20px;
+    text-align:center;
+    color:black;
+    float:left;
+    margin-right:30px;
+    border-radius:10px;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+}
+.carte:hover{
+    color:#0B6DB8;
+}
+
+</style>
+{% include 'bases/header.html.twig' %}
+
+    <div style="float:right; margin-right:20px;font-size:20px;" class="container-xl col-md-9" style="font-family: 'Roboto', sans-serif;">
+       
+            <div class="carte">
+                <i style="font-size:120px;" class="bi bi-people-fill"></i>
+                <h2> {{totalClients}} clients</h2>
+            </div>  
+              <div class="carte">
+                <i style="font-size:120px;" class="bi bi-people-fill"></i>
+                <h2> clients</h2>
+            </div>  
+              <div class="carte">
+                <i style="font-size:120px;" class="bi bi-people-fill"></i>
+                <h2> clients</h2>
+            </div>  
+        
+    </div> 
+
+{% include 'bases/slidebar.html.twig' %}
+
+{% endblock %}

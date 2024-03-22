@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="bootstrap.min.css">
+
+
+{% block body %}
+<br>
+<form action="{{path('app_from')}}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" class="form-control">
+    <input type="submit" value="envoyer"class="btn btn-info">
+</form>
+{% endblock %}

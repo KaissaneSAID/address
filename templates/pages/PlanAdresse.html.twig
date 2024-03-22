@@ -1,0 +1,158 @@
+
+
+{% block body %}
+{% include 'bases/header.html.twig' %}
+
+    <div style="float:right; margin-right:20px;font-size:20px;" class="container-xl col-md-9" style="font-family: 'Roboto', sans-serif;">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title" >
+                    <div class="row" >
+                        <div  class="col-sm-8"><h2 style="font-size:30px; text-transform:uppercase; margin-bottom:20px;"><b>Plan d'adresse ip de comores télécom</b></h2></div>
+                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>197.255.224.0/20
+</b></h2></div>
+                       
+
+                    <div class="col-sm-4">
+                            <div class="search-box">
+                                <form id="myForm" action="{{path('app_recherche')}}" method="post">
+                                    <input  id="textInput" value="{{searchQuery}}"  style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="adresse sous reseau">
+                                    <button type="submit" id="hiddenSubmitButton" style="display: none;"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if address is empty %}
+        <p style="font-size:44px;text-align:center">Aucun element trouvé pour la recherche <b style="font-size:44px;"> "{{searchQuery}}"</b>.</p>
+    {% else %}
+                <table class="table table-striped table-hover table-bordered" style="font-size:20px;">
+                    <thead>
+                        <tr>
+                            <th>Adresse Sous Réseau</th>
+                            <th>Masque Sous Réseau</th>
+                            <th>Debut</th>
+                            <th>Fin</th>
+                            <th>Type</th>
+                            <th>IdIP</th>
+                            <th>Receveur</th>
+                            <th>Vlan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                   {% for addresse in address %}
+                        <tr>
+                            <td>{{ addresse.getAddress() }}</td>
+                            <td>{{ addresse.getMasque() }}</td>
+                            <td>{{ addresse.getDebut() }}</td>
+                            <td>{{ addresse.getFin() }}</td>
+                            <td><b>{{ addresse.getType() }}</b></td>
+                            <td>{{ addresse.getIdIP() }}</td>
+                            <td>{{ addresse.getReceveurclient() }}</td>
+                            <td>{{ addresse.getVlan() }}</td>
+   
+                        </tr>
+                        {% endfor %}   
+                                
+                    </tbody>
+                </table>
+                {% endif %}
+                <div class="clearfix">
+                    <div style="font-size:20px;" class="hint-text"></div>
+                    <ul style="font-size:24px;" class="pagination" id="pagination">
+                          </ul>
+                </div>
+            </div>
+        </div>  
+    </div> 
+
+{% include 'bases/slidebar.html.twig' %}
+
+<script>
+
+ document.addEventListener("DOMContentLoaded", function () {
+    const pagination = document.getElementById('pagination');
+    const tableRows = document.querySelectorAll('#table-body tr');
+    const hintText = document.querySelector('.hint-text'); // Sélection de l'élément avec la classe hint-text
+    
+    const rowsPerPage = 7;
+    let currentPage = 1;
+
+    function showRows(page) {
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        tableRows.forEach((row, index) => {
+            if (index >= startIndex && index < endIndex) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    function updatePagination() {
+        const totalPages = Math.ceil(tableRows.length / rowsPerPage);
+        pagination.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.classList.add('page-item');
+            if (i === currentPage) {
+                li.classList.add('active');
+            }
+            const link = document.createElement('a');
+            link.href = '#';
+            link.classList.add('page-link');
+            link.innerText = i;
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                currentPage = i;
+                showRows(currentPage);
+                updatePagination();
+                updateHintText(); // Mettre à jour le texte de hint-text à chaque changement de page
+            });
+            li.appendChild(link);
+            pagination.appendChild(li);
+        }
+    }
+
+    function updateHintText() {
+        const startIndex = (currentPage - 1) * rowsPerPage + 1;
+        const endIndex = Math.min(currentPage * rowsPerPage, tableRows.length);
+        hintText.innerHTML = `affichage de <b>${startIndex}-${endIndex}</b> lignes sur  <b>${tableRows.length}</b> lignes`;
+    }
+
+    showRows(currentPage);
+    updatePagination();
+    updateHintText(); // Appel initial pour mettre à jour le texte hint-text
+});
+
+ function submitForm() {
+            document.getElementById('myForm').submit();
+        }
+
+        // Récupère l'élément input
+        const inputField = document.getElementById('textInput');
+
+        // Ajoute un écouteur d'événement sur l'élément input pour détecter les modifications
+        inputField.addEventListener('input', function(event) {
+            // Vous pouvez ajouter ici des conditions pour vérifier si l'utilisateur a terminé de saisir
+            // Par exemple, vous pouvez vérifier la longueur de la chaîne ou s'il y a un caractère spécifique
+        });
+
+        // Ajoute un écouteur d'événement sur l'élément input pour détecter la touche "Entrée"
+        inputField.addEventListener('keypress', function(event) {
+            // Vérifie si la touche pressée est la touche "Entrée" (keyCode 13 ou charCode 13)
+            if (event.key === 'Enter' || event.keyCode === 13 || event.charCode === 13) {
+                // Empêche le comportement par défaut du formulaire (envoi via le bouton submit)
+                event.preventDefault();
+
+                // Appelle la fonction pour soumettre le formulaire
+                submitForm();
+            }
+        });
+
+
+</script>
+
+{% endblock %}

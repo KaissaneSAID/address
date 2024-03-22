@@ -1,0 +1,50 @@
+
+
+    
+<link rel="stylesheet" href="bootstrap.min.css">
+
+{% block stylesheets %}
+
+    {{ encore_entry_link_tags('app') }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+<style>
+    .main{
+    background-color: white;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top:5%;
+    text-align:center;
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+
+}
+</style>
+{% block body %}
+    <div class="main pb-4">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    
+        <img class="mt-4 mb-4" src="{{asset('images/logo.png')}}" width="150" alt=""><br>
+
+        <h1 style="color:#0B6DB8;font-family:Arima Madurai;">Login</h1>
+        <form method="post">
+          <div  class="mb-4 mt-5 ml-5 mr-5">
+              <input style="height:50px"  type="email"  name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus class="form-control" id="exampleInputEmail1" placeholder="Email" aria-describedby="emailHelp" autocomplete="email" required autofocus>
+            </div>
+            <div class="mb-4 ml-5 mr-5">
+              <input style="height:50px" type="password" class="form-control" id="exampleInputEmail1" name="password" placeholder="Mot de passe" aria-describedby="emailHelp" autocomplete="current-password" required>
+            </div>
+           
+            <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+            <div  class="mb-4  ml-5 mr-5">
+          <button style="height:50px; width:100%; font-size:24px;font-family:Arima Madurai;" type="submit" class="  btn btn-success">Se connecter</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

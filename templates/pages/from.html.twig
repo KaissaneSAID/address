@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Importer des données depuis un fichier Excel</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+
+<center><h1 >Importer des données depuis un fichier Excel</h1></center>
+
+<form  style="margin-left:30%;margin-right:30%" action="{{ path('from') }}" method="post" enctype="multipart/form-data">
+   <div class="mb-3">
+  <label for="formFile" class="form-label">importer un fichier excel</label>
+  <input class="form-control" type="file" name="file" id="formFile">
+</div>
+        <button class="btn btn-success" type="submit">Importer</button>
+    </div>
+</form>
+
+</body>
+</html>
