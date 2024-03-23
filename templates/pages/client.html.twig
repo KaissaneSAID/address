@@ -104,12 +104,17 @@
                             <td>{{ client.getIpaddress() }}</td>
                             <td>{{ client.getMasque() }}</td>
                             <td>{{ client.getPasserelle() }}</td>
-                            <td>{{client.typeConnexion.name}}
+                            <td>{{ client.typeConnexion.name}}
                             </td>
+                            {% if client.getDate() != "" %}
+                                
+                            <td>{{ client.getDate() }}</td>
+                            {% else %}
+                            <td>{{ client.getDateAttribue() | date('d/m/Y') }}</td>
+
+                            {% endif %}
                             
-                            <td>{{ client.getDate()}}</td>
                             <td><a href="{{ path('delete_client', { 'id': client.id }) }}" style="color:red"><i class="bi bi-trash3-fill" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?')" title="Suprimer"></i></a>
-                            <a href="" style="color:green"><i class="bi bi-pencil-square" title="Editer"></i></a></td>
                         </tr>
                         {% endfor %}         
                     </tbody>

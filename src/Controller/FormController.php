@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Client;
 use App\Entity\PlanAddress;
 use App\Entity\TypeConnexion;
+use App\Repository\TypeConnexionRepository;
+use App\Traits\AppTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +18,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class FormController extends AbstractController
 {
+    use AppTrait;
+    
+    private $typeConnexionRepository;
+
+    public function __construct(TypeConnexionRepository $typeConnexionRepository)
+    {
+        $this->typeConnexionRepository = $typeConnexionRepository;
+    }
+
     #[Route('/form', name: 'app_form')]
     public function index(): Response
     {
@@ -41,12 +52,11 @@ class FormController extends AbstractController
     $spreadsheet = IOFactory::load($fileFolder . $filePathName); // Here we are able to read from the excel file 
     $row = $spreadsheet->getActiveSheet()->removeRow(1); // I added this to be able to remove the first file line 
     $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true); // here, the read data is turned into an array
-   
     $entityManager = $this->getDoctrine()->getManager(); 
     foreach ($sheetData as $Row) 
         { 
 
-
+            
             $numdossier = $Row['B']; // store the first_name on each iteration 
             $nom = $Row['C']; // store the last_name on each iteration
             $contact= $Row['D'];     // store the email on each iteration
@@ -55,16 +65,23 @@ class FormController extends AbstractController
             $masque = $Row['G']; 
             $passerelle = $Row['H'];   // store the phone on each iteration
             // store the phone on each iteration
-            if($Row['I'] == "LS"){
-                $typeconn = 3;
-            }elseif ($Row['I'] == "ADSL") {
-                $typeconn = 1;
-            }elseif($Row['I'] == "BLR"){
-                $typeconn = 2;
-            }
+            $typeConn = $this->typeConnexionRepository->findOneBy(['name' => $Row['I']]);
             // store the phone on each iteration
-            $date = $Row['J'];   // store the phone on each iteration
-               
+            $date = $Row['J']; 
+              // store the phone on each iteration
+
+            //   $address = $Row['A'];
+            //   $masque = $Row['B'];
+            //   $debut = $Row['C'];
+            //   $fin = $Row['E'];
+            //   $type = $Row['F'];
+            //   $idIp = $Row['G'];
+            //   $receveurclient = $Row['H'];
+            //   $vlan = $Row['I'];
+
+
+
+            
                 $planaddress = new Client(); 
                 $planaddress->setNDossier($numdossier);
                 $planaddress->setNom($nom);
@@ -73,8 +90,18 @@ class FormController extends AbstractController
                 $planaddress->setIpaddress($addressip);
                 $planaddress->setMasque($masque);
                 $planaddress->setPasserelle($passerelle);
-                $planaddress->setTypeConnexion($typeconn);
+                $planaddress->setTypeConnexion($typeConn);
                 $planaddress->setDate($date);
+                $planaddress->setDateAttribue($this->getAppCurrentDate());
+                // $planaddress = new PlanAddress();
+                // $planaddress -> setAddress($address);
+                // $planaddress -> setMasque($masque);
+                // $planaddress -> setDebut($debut);
+                // $planaddress -> setFin($fin);
+                // $planaddress -> setType($type);
+                // $planaddress -> setIdIP($idIp);
+                // $planaddress -> setReceveurclient($receveurclient);
+                // $planaddress -> setVlan($vlan);
                 $entityManager->persist($planaddress); 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($planaddress);

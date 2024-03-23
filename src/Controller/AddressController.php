@@ -35,9 +35,10 @@ class AddressController extends AbstractController
             
             // Recherche par adresse IP
             $addressReseau = $planAddressRepository->findByAddress($searchQuery);
+            $Type = $planAddressRepository->findByType($searchQuery);
     
             // Fusionner les résultats des deux recherches
-            $address = array_merge($addressReceveur,$addressReseau);
+            $address = array_merge($addressReceveur,$addressReseau,$Type);
         } else {
             // Si aucune requête de recherche n'est effectuée, afficher tous les clients
             $address = $planAddressRepository->findAll();

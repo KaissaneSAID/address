@@ -14,29 +14,17 @@ class Client
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $NDossier = null;
+   
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column]
-    private ?int $contact = null;
+   
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $localite = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $passerelle = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateAttribue = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $ipaddress = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $masque = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'IdTYpeconnexion')]
     private ?TypeConnexion $typeConnexion = null;
@@ -47,22 +35,27 @@ class Client
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contacts = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateAttribue = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $NDossier = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ipaddress = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $masque = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $passerelle = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNDossier(): ?string
-    {
-        return $this->NDossier;
-    }
-
-    public function setNDossier(string $NDossier): static
-    {
-        $this->NDossier = $NDossier;
-
-        return $this;
-    }
+   
 
     public function getNom(): ?string
     {
@@ -74,19 +67,7 @@ class Client
         $this->nom = $nom;
 
         return $this;
-    }
-
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(string $contact): static
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
+    }  
 
     public function getLocalite(): ?string
     {
@@ -100,53 +81,6 @@ class Client
         return $this;
     }
 
-    public function getPasserelle(): ?string
-    {
-        return $this->passerelle;
-    }
-
-    public function setPasserelle(string $passerelle): static
-    {
-        $this->passerelle = $passerelle;
-
-        return $this;
-    }
-
-    public function getDateAttribue(): ?\DateTime
-    {
-        return $this->dateAttribue;
-    }
-
-    public function setDateAttribue(\DateTime $dateAttribue): static
-    {
-        $this->dateAttribue = $dateAttribue;
-
-        return $this;
-    }
-
-    public function getIpaddress(): ?string
-    {
-        return $this->ipaddress;
-    }
-
-    public function setIpaddress(string $ipaddress): static
-    {
-        $this->ipaddress = $ipaddress;
-
-        return $this;
-    }
-
-    public function getMasque(): ?string
-    {
-        return $this->masque;
-    }
-
-    public function setMasque(string $masque): static
-    {
-        $this->masque = $masque;
-
-        return $this;
-    }
 
     public function getTypeConnexion(): ?TypeConnexion
     {
@@ -180,6 +114,66 @@ class Client
     public function setContacts(?string $contacts): static
     {
         $this->contacts = $contacts;
+
+        return $this;
+    }
+
+    public function getDateAttribue(): ?\DateTimeInterface
+    {
+        return $this->dateAttribue;
+    }
+
+    public function setDateAttribue(\DateTimeInterface $dateAttribue): static
+    {
+        $this->dateAttribue = $dateAttribue;
+
+        return $this;
+    }
+
+    public function getNDossier(): ?string
+    {
+        return $this->NDossier;
+    }
+
+    public function setNDossier(?string $NDossier): static
+    {
+        $this->NDossier = $NDossier;
+
+        return $this;
+    }
+
+    public function getIpaddress(): ?string
+    {
+        return $this->ipaddress;
+    }
+
+    public function setIpaddress(?string $ipaddress): static
+    {
+        $this->ipaddress = $ipaddress;
+
+        return $this;
+    }
+
+    public function getMasque(): ?string
+    {
+        return $this->masque;
+    }
+
+    public function setMasque(?string $masque): static
+    {
+        $this->masque = $masque;
+
+        return $this;
+    }
+
+    public function getPasserelle(): ?string
+    {
+        return $this->passerelle;
+    }
+
+    public function setPasserelle(?string $passerelle): static
+    {
+        $this->passerelle = $passerelle;
 
         return $this;
     }

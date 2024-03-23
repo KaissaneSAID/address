@@ -46,20 +46,29 @@ class PlanAddressRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-public function findByReceveur(string $receveurclient): array
-{
-    return $this->createQueryBuilder('a')
-        ->andWhere('a.receveurclient = :receveurclient')
-        ->setParameter('receveurclient', '%' . $receveurclient .'%' )
-        ->getQuery()
-        ->getResult();
-}
+
 
 public function findByAddress(string $address): array
 {
     return $this->createQueryBuilder('a')
         ->andWhere('a.address = :address')
         ->setParameter('address', $address)
+        ->getQuery()
+        ->getResult();
+}
+public function findByReceveur(string $receveur): array
+{
+    return $this->createQueryBuilder('a')
+    ->andWhere('a.receveurclient LIKE :receveurclient')
+    ->setParameter('receveurclient', '%' . $receveur . '%')
+        ->getQuery()
+        ->getResult();
+}
+public function findByType(string $type): array
+{
+    return $this->createQueryBuilder('a')
+    ->andWhere('a.type LIKE :type')
+    ->setParameter('type', '%' . $type . '%')
         ->getQuery()
         ->getResult();
 }

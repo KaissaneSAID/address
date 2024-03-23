@@ -15,7 +15,7 @@ class TypeConnexion
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Client::class, mappedBy: 'typeConnexion')]

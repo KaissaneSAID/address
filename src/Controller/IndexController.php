@@ -39,7 +39,7 @@ class IndexController extends AbstractController
 
         $client->setNDossier($request->request->get('NDossier'));
         $client->setNom($request->request->get('Nom'));
-        $client->setContact($request->request->get('Contact'));
+        $client->setContacts($request->request->get('Contact'));
         $client->setLocalite($request->request->get('Localite'));
         $client->setIpaddress($request->request->get('Ipaddress'));
         $client->setMasque($request->request->get('Masque'));

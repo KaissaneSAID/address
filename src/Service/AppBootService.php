@@ -25,15 +25,15 @@ class AppBootService
 
     public function createFirtUser(): void
     {
-        $email = 'kaissanesaidahmed@gmail.com';
+        $email = 'saidahmedkaissane@gmail.com';
         $user = $this->userRepository->findOneBy(['email' => $email]);
         
         if (!$user) {
             $user = new User();
 
             $user
-                ->setFirstname('Ayane')
-                ->setLastname('HADJI')
+                ->setFirstname('Kaissane')
+                ->setLastname('SAID AHMED')
                 ->setEmail($email)
                 ->setPassword(
                     $this->passwordHasher->hashPassword(
