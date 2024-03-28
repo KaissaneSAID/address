@@ -93,6 +93,8 @@ class FormController extends AbstractController
                 $planaddress->setTypeConnexion($typeConn);
                 $planaddress->setDate($date);
                 $planaddress->setDateAttribue($this->getAppCurrentDate());
+
+                
                 // $planaddress = new PlanAddress();
                 // $planaddress -> setAddress($address);
                 // $planaddress -> setMasque($masque);

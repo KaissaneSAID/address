@@ -20,7 +20,6 @@ class DhashbordController extends AbstractController
         $totalClientsADSL = $clientRepository->count(['typeConnexion' => '1']);
         $totalClientsBLR = $clientRepository->count(['typeConnexion' => '2']);
         $totalClientsLS = $clientRepository->count(['typeConnexion' => '3']);
-        $totalClientsPublique = $clientRepository->count(['typeConnexion' => '5']);
         $totalAdressLibre = $planAddressRepository->count(['receveurclient' => 'libre']);
         
         // Affichez le nombre total de clients
@@ -29,7 +28,6 @@ class DhashbordController extends AbstractController
             'totalClientsADSL' =>$totalClientsADSL,
             'totalClientsBLR' =>$totalClientsBLR,
             'totalClientsLS' =>$totalClientsLS,
-            'totalClientsPublique' =>$totalClientsPublique,
             'totalAdressLibre' =>$totalAdressLibre,
         ]);
     }
