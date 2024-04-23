@@ -9,23 +9,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LSStandarsController extends AbstractController
+class LsParticulierController extends AbstractController
 {
-    #[Route('/lsstandars', name: 'app_ls_standars')]
+    #[Route('/lsparticulier', name: 'app_ls_particulier')]
     public function index(): Response
     {
         $searchQuery="";
-
         $ls = $this->getDoctrine()->getRepository(Ls::class)->findAll();
-
-        return $this->render('ls_standars/index.html.twig', [
-            'controller_name' => 'LSStandarsController',
+        return $this->render('ls_particulier/index.html.twig', [
+            'controller_name' => 'LsParticulierController',
             'searchQuery' => $searchQuery,
             'ls'=>$ls,
+
         ]);
     }
-
-    #[Route('/search', name: 'app_search')]
+    #[Route('/recherche', name: 'app_recherche')]
 
     public function search(Request $request, LsRepository $lsRepository): Response
     {
@@ -40,7 +38,7 @@ class LSStandarsController extends AbstractController
             $ls = $lsRepository->findAll();
         }
     
-        return $this->render('ls_standars/index.html.twig', [
+        return $this->render('ls_particulier/index.html.twig', [
             'ls' => $ls,
             'searchQuery' => $searchQuery,
         ]);

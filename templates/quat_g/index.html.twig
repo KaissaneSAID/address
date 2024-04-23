@@ -11,20 +11,18 @@
             <div class="table-wrapper">
                 <div class="table-title" >
                     <div class="row" >
-                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients LS Standars</b></h2></div>
-         <div class="col-sm-4">
+                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients 4G</b></h2></div>
+                            <div class="col-sm-4">
                             <div class="search-box">
-                                <form id="myForm" action="{{ path('app_search') }}" method="post">
-                                    <input  id="textInput" value="{{searchQuery}}"  style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="Beneficiaire">
+                                <form id="myForm" action="{{ path('app_recherche') }}" method="post">
+                                    <input  id="textInput"   style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="Beneficiaire">
                                      <button type="submit" id="hiddenSubmitButton" style="display: none;"></button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% if ls is empty %}
-            <p style="text-align:center;font-size:50px;">Aucun client trouvé  sur la recheche <b> {{searchQuery}}</b></p>
-        {% else %}
+                
                 <table class="table table-striped table-hover table-bordered" style="font-size:18px;">
                     <thead>
                         <tr>
@@ -36,10 +34,10 @@
                         </tr>
                     </thead>
                     
-                    <tbody id="table-body">
+                    {# <tbody id="table-body">
                      {% for lss in ls %}
 
-                        {% if lss.getMasque()=="255.255.255.0" and lss.getBeneficiaire() != "LIBRE"  %}
+                        {% if lss.getMasque()=="255.255.255.248" and lss.getBeneficiaire() != "LIBRE"  %}
                             
                             <tr>
                                 <td>{{ lss.getBeneficiaire() }}</td>
@@ -50,7 +48,7 @@
                             </tr>
                         {% endif %}
                         {% endfor %}
-                    </tbody>
+                    </tbody> #}
                 </table>
                 
                 <div class="clearfix">
@@ -58,7 +56,6 @@
                     <ul style="font-size:24px;" class="pagination" id="pagination">
                           </ul>
                 </div>
-                {% endif %}
             </div>
         </div>  
 

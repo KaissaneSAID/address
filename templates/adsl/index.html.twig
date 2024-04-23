@@ -11,10 +11,10 @@
             <div class="table-wrapper">
                 <div class="table-title" >
                     <div class="row" >
-                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients LS Standars</b></h2></div>
+                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients LS ADSL</b></h2></div>
          <div class="col-sm-4">
                             <div class="search-box">
-                                <form id="myForm" action="{{ path('app_search') }}" method="post">
+                                <form id="myForm" action="{{ path('app_recherches') }}" method="post">
                                     <input  id="textInput" value="{{searchQuery}}"  style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="Beneficiaire">
                                      <button type="submit" id="hiddenSubmitButton" style="display: none;"></button>
                                 </form>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                {% if ls is empty %}
+                {% if adsl is empty %}
             <p style="text-align:center;font-size:50px;">Aucun client trouvé  sur la recheche <b> {{searchQuery}}</b></p>
         {% else %}
                 <table class="table table-striped table-hover table-bordered" style="font-size:18px;">
@@ -37,15 +37,15 @@
                     </thead>
                     
                     <tbody id="table-body">
-                     {% for lss in ls %}
+                     {% for adsls in adsl %}
 
-                        {% if lss.getMasque()=="255.255.255.0" and lss.getBeneficiaire() != "LIBRE"  %}
+                        {% if adsls.getBeneficiaire() != "LIBRE"  %}
                             
                             <tr>
-                                <td>{{ lss.getBeneficiaire() }}</td>
-                                <td>{{ lss.getIpadd() }}</td>
-                                <td>{{ lss.getVlan() }}</td>
-                                <td>{{ lss.getMasque() }}</td>
+                                <td>{{ adsls.getBeneficiaire() }}</td>
+                                <td>{{ adsls.getIpadd() }}</td>
+                                <td>{{ adsls.getVlan() }}</td>
+                                <td>{{ adsls.getMasque() }}</td>
                                 
                             </tr>
                         {% endif %}

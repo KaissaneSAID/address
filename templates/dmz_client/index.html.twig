@@ -11,41 +11,47 @@
             <div class="table-wrapper">
                 <div class="table-title" >
                     <div class="row" >
-                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients LS Standars</b></h2></div>
+                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des DMZ</b></h2></div>
          <div class="col-sm-4">
                             <div class="search-box">
-                                <form id="myForm" action="{{ path('app_search') }}" method="post">
-                                    <input  id="textInput" value="{{searchQuery}}"  style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="Beneficiaire">
+                                <form id="myForm" action="{{ path('app_rech') }}" method="post">
+                                    <input  id="textInput" value="{{searchQuery}}"  style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="Affectation">
                                      <button type="submit" id="hiddenSubmitButton" style="display: none;"></button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% if ls is empty %}
+                {% if dmz is empty %}
             <p style="text-align:center;font-size:50px;">Aucun client trouvé  sur la recheche <b> {{searchQuery}}</b></p>
         {% else %}
                 <table class="table table-striped table-hover table-bordered" style="font-size:18px;">
                     <thead>
-                        <tr>
-                            <th>Beneficiaire</th>
+                            <tr>
+                            <th>Affectation</th>
                             <th>Ip Adresse</th>
-                            <th>Vlan</th>
+                            <th>Sous Réseau</th>
+                            
                             <th>Masque</th>
+                            <th>Vlan</th>
+                            <th>Taille Sous-Reseau</th>
                             
                         </tr>
+                            
                     </thead>
                     
                     <tbody id="table-body">
-                     {% for lss in ls %}
+                     {% for adsls in dmz %}
 
-                        {% if lss.getMasque()=="255.255.255.0" and lss.getBeneficiaire() != "LIBRE"  %}
+                        {% if adsls.getAffectation != "LIBRE"  %}
                             
                             <tr>
-                                <td>{{ lss.getBeneficiaire() }}</td>
-                                <td>{{ lss.getIpadd() }}</td>
-                                <td>{{ lss.getVlan() }}</td>
-                                <td>{{ lss.getMasque() }}</td>
+                                <td>{{ adsls.getAffectation() }}</td>
+                                <td>{{ adsls.getAddressIp() }}</td>
+                                <td>{{ adsls.getSousReseaux() }}</td>
+                                <td>{{ adsls.getMasque() }}</td>
+                                <td>{{ adsls.getVlan() }}</td>
+                                <td>{{ adsls.getTailleSousReseau() }}</td>
                                 
                             </tr>
                         {% endif %}

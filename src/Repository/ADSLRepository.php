@@ -2,44 +2,44 @@
 
 namespace App\Repository;
 
-use App\Entity\Ls;
+use App\Entity\ADSL;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Ls>
+ * @extends ServiceEntityRepository<ADSL>
  *
- * @method Ls|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ls|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ls[]    findAll()
- * @method Ls[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ADSL|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ADSL|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ADSL[]    findAll()
+ * @method ADSL[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LsRepository extends ServiceEntityRepository
+class ADSLRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Ls::class);
+        parent::__construct($registry, ADSL::class);
     }
 
 //    /**
-//     * @return Ls[] Returns an array of Ls objects
+//     * @return ADSL[] Returns an array of ADSL objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
+//            ->orderBy('a.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Ls
+//    public function findOneBySomeField($value): ?ADSL
 //    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.exampleField = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()

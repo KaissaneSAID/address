@@ -11,10 +11,10 @@
             <div class="table-wrapper">
                 <div class="table-title" >
                     <div class="row" >
-                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients LS Standars</b></h2></div>
+                        <div  class="col-sm-8"><h2 style="font-size:30px; margin-bottom:20px;"><b>Liste des Clients LS Particulier</b></h2></div>
          <div class="col-sm-4">
                             <div class="search-box">
-                                <form id="myForm" action="{{ path('app_search') }}" method="post">
+                                <form id="myForm" action="{{ path('app_recherche') }}" method="post">
                                     <input  id="textInput" value="{{searchQuery}}"  style="font-size:20px; height: 45px; border-radius:5px;" type="text" class="form-control" name="q" value="" placeholder="Beneficiaire">
                                      <button type="submit" id="hiddenSubmitButton" style="display: none;"></button>
                                 </form>
@@ -39,7 +39,7 @@
                     <tbody id="table-body">
                      {% for lss in ls %}
 
-                        {% if lss.getMasque()=="255.255.255.0" and lss.getBeneficiaire() != "LIBRE"  %}
+                        {% if lss.getMasque()=="255.255.255.248" and lss.getBeneficiaire() != "LIBRE"  %}
                             
                             <tr>
                                 <td>{{ lss.getBeneficiaire() }}</td>

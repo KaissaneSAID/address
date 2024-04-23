@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\ADSL;
 use App\Entity\Client;
+use App\Entity\DmzClient;
+use App\Entity\Ls;
 use App\Entity\PlanAddress;
 use App\Entity\TypeConnexion;
 use App\Repository\TypeConnexionRepository;
@@ -52,22 +55,34 @@ class FormController extends AbstractController
     $spreadsheet = IOFactory::load($fileFolder . $filePathName); // Here we are able to read from the excel file 
     $row = $spreadsheet->getActiveSheet()->removeRow(1); // I added this to be able to remove the first file line 
     $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true); // here, the read data is turned into an array
+     
     $entityManager = $this->getDoctrine()->getManager(); 
     foreach ($sheetData as $Row) 
         { 
 
+            $affect = $Row['A'];
+            $add = $Row['B'];
+             $vlan = $Row['E'];
+            $masque = $Row['D'];
+            $tailleSousR = $Row['F'];
+
+            // $benef = $Row['A'];
+            // $add = $Row['B'];
+            // $vlan = $Row['C'];
+            // $masque = $Row['D'];
+
             
-            $numdossier = $Row['B']; // store the first_name on each iteration 
-            $nom = $Row['C']; // store the last_name on each iteration
-            $contact= $Row['D'];     // store the email on each iteration
-            $localite = $Row['E'];   // store the phone on each iteration
-            $addressip = $Row['F'];   // store the phone on each iteration
-            $masque = $Row['G']; 
-            $passerelle = $Row['H'];   // store the phone on each iteration
-            // store the phone on each iteration
-            $typeConn = $this->typeConnexionRepository->findOneBy(['name' => $Row['I']]);
-            // store the phone on each iteration
-            $date = $Row['J']; 
+            // $numdossier = $Row['B']; // store the first_name on each iteration 
+            // $nom = $Row['C']; // store the last_name on each iteration
+            // $contact= $Row['D'];     // store the email on each iteration
+            // $localite = $Row['E'];   // store the phone on each iteration
+            // $addressip = $Row['F'];   // store the phone on each iteration
+            // $masque = $Row['G']; 
+            // $passerelle = $Row['H'];   // store the phone on each iteration
+            // // store the phone on each iteration
+            // $typeConn = $this->typeConnexionRepository->findOneBy(['name' => $Row['I']]);
+            // // store the phone on each iteration
+            // $date = $Row['J']; 
               // store the phone on each iteration
 
             //   $address = $Row['A'];
@@ -82,17 +97,17 @@ class FormController extends AbstractController
 
 
             
-                $planaddress = new Client(); 
-                $planaddress->setNDossier($numdossier);
-                $planaddress->setNom($nom);
-                $planaddress->setLocalite($localite);
-                $planaddress->setContacts($contact);
-                $planaddress->setIpaddress($addressip);
-                $planaddress->setMasque($masque);
-                $planaddress->setPasserelle($passerelle);
-                $planaddress->setTypeConnexion($typeConn);
-                $planaddress->setDate($date);
-                $planaddress->setDateAttribue($this->getAppCurrentDate());
+                // $planaddress = new Client(); 
+                // $planaddress->setNDossier($numdossier);
+                // $planaddress->setNom($nom);
+                // $planaddress->setLocalite($localite);
+                // $planaddress->setContacts($contact);
+                // $planaddress->setIpaddress($addressip);
+                // $planaddress->setMasque($masque);
+                // $planaddress->setPasserelle($passerelle);
+                // $planaddress->setTypeConnexion($typeConn);
+                // $planaddress->setDate($date);
+                // $planaddress->setDateAttribue($this->getAppCurrentDate());
 
                 
                 // $planaddress = new PlanAddress();
@@ -104,6 +119,13 @@ class FormController extends AbstractController
                 // $planaddress -> setIdIP($idIp);
                 // $planaddress -> setReceveurclient($receveurclient);
                 // $planaddress -> setVlan($vlan);
+                 $planaddress = new DmzClient;
+                  $planaddress ->setAffectation ($affect);
+                  $planaddress -> setMasque($masque);
+                  $planaddress -> setVlan($vlan);
+                  $planaddress -> setAddressIp($add);
+                  $planaddress -> setTailleSousReseau($tailleSousR);
+                
                 $entityManager->persist($planaddress); 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($planaddress);

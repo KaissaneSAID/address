@@ -10,6 +10,7 @@ use App\Entity\Client;
 use App\Entity\TypeConnexion;
 use App\Entity\User;
 use App\Repository\ClientRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class IndexController extends AbstractController
@@ -55,7 +56,7 @@ class IndexController extends AbstractController
         return $this->redirectToRoute('app_client');
     }
 
-    #[Route('/search', name: 'app_search')]
+    #[Route('/search', name: 'app_sea')]
 
     public function search(Request $request, ClientRepository $clientRepository): Response
     {
@@ -104,32 +105,60 @@ class IndexController extends AbstractController
     #[Route('/edit/{id}', name: 'edit_client', methods: ['POST'])]
     public function edit(Request $request, $id): Response
     {
-        // Récupérer l'identifiant soumis à partir de la requête
-        $clientId = $request->request->get('id');
-        
-        // Charger l'objet Client correspondant à modifier
-        $client = $this->getDoctrine()->getRepository(Client::class)->find($clientId);
+        // Récupérer le client depuis la base de données
+        $client = $this->getDoctrine()->getRepository(Client::class)->find($id);
 
+        // Vérifier si le client existe
         if (!$client) {
-            throw $this->createNotFoundException('Client non trouvé');
+            throw $this->createNotFoundException('Client not found');
         }
 
-        // Récupérer les autres données soumises à partir de la requête
-        $nom = $request->request->get('nom');
-        $contact = $request->request->get('contact');
-        // Récupérer d'autres champs du formulaire
-        
-        // Mettre à jour les propriétés de l'objet Client
-        $client->setNom($nom);
-        $client->setContact($contact);
-        // Mettre à jour d'autres propriétés du Client
-        
-        // Enregistrer les modifications dans la base de données
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->flush();
-        
-        // Rediriger vers une autre page après la modification
-        return $this->redirectToRoute('app_client');
+        // Créer un formulaire pour l'édition du client
+        $form = $this->createForm(Client::class, $client);
+        $form->handleRequest($request);
+
+        // Traiter le formulaire lorsqu'il est soumis
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Mettre à jour les données du client dans la base de données
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            // Rediriger l'utilisateur vers une autre page après l'édition
+            return $this->redirectToRoute('app_client');
+        }
+
+        // Afficher le formulaire d'édition du client
+        return $this->render('client/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/client/{id}', name: 'get_client_details', methods: ['GET'])]
+
+    public function getClientDetails($id)
+    {
+        // Récupérer les détails du client depuis votre base de données, par exemple :
+        $client = $this->getDoctrine()->getRepository(Client::class)->find($id);
+
+        // Vérifier si le client existe
+        if (!$client) {
+            // Retourner une réponse JSON avec une erreur si le client n'est pas trouvé
+            return new JsonResponse(['error' => 'Client not found'], 404);
+        }
+
+        // Retourner les détails du client au format JSON
+        return new JsonResponse([
+            'id' => $client->getId(),
+            'NDossier' => $client->getNDossier(),
+            'Nom' => $client->getNom(),
+            'Contact' => $client->getContacts(),
+            'Localite' => $client->getLocalite(),
+            'Ipaddress' => $client->getIpaddress(),
+            'Masque' => $client->getMasque(),
+            'Passerelle' => $client->getPasserelle(),
+            'typeConnexion' => $client->getTypeConnexion(),
+            // Ajoutez d'autres détails du client ici...
+        ]);
     }
 
 }

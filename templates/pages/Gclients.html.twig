@@ -24,35 +24,35 @@
     <div style="float:right; margin-right:20px;font-size:20px;" class="container-xl col-md-9" style="font-family: 'Roboto', sans-serif;">
       <a href="{{ path('app_client') }}" >
         <div class="carte">
-            <i style="font-size:120px;" class="bi bi-people-fill"></i>
+            <i style="font-size:120px;" class="bi bi-people"></i>
             <h2>Total Clients</h2>
           </div>
         </a>
-        <a href="{{ path('app_client') }}" >
+        <a href="{{ path('app_dmz') }}" >
         <div class="carte">
-            <i style="font-size:120px;" class="bi bi-people-fill"></i>
+            <i style="font-size:120px;" class="bi bi-router"></i>
             <h2>DMZ</h2>
           </div>
         </a>
-        <a href="" >
+        <a href="{{path('app_dmz_client')}}" >
         <div class="carte">
-          <i style="font-size:120px;" class="bi bi-reception-4"></i>
+          <b style="font-size:120px;"><i class="bi bi-router"></i><i class="bi bi-person"></i></b>
           <h2>DMZ Clients</h2>
         </div> 
         </a>
         <a href="{{ path('app_ls_standars')}}" >
          <div class="carte">
-          <i style="font-size:120px;" class="bi bi-people-fill"></i>
+          <i style="font-size:120px;" class="bi bi-people"></i>
           <h2>LS Standars</h2>
         </div> 
         </a> 
-        <a href="" >
+        <a href="{{ path('app_ls_particulier')}}" >
          <div class="carte">
           <i style="font-size:120px;" class="bi bi-people-fill"></i>
           <h2>LS Particulier</h2>
         </div> 
         </a> 
-        <a href="" >
+        <a href="{{ path('app_adsl')}}" >
          <div class="carte">
           <i style="font-size:120px;" class="bi bi-people-fill"></i>
           <h2>ADSL</h2>
@@ -64,12 +64,7 @@
           <h2>BLR</h2>
         </div> 
         </a>
-         <a href="" >
-         <div class="carte">
-          <i style="font-size:120px;" class="bi bi-reception-4"></i>
-          <h2>4G</h2>
-        </div> 
-        </a>  
+        
 
     </div> 
 
