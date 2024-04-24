@@ -1,0 +1,49 @@
+{% block body %}
+<style>
+
+
+ .mains{
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top:5%;
+    text-align:center;
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+
+}
+
+</style>
+{% include 'bases/header.html.twig' %}
+
+    <div style="float:right; margin-right:20px;font-size:20px;" class="container-xl col-md-9" style="font-family: 'Roboto', sans-serif;">
+    
+          <div class="mains pb-4">
+    
+    
+
+        <h1  style="color:#0B6DB8;font-family:Arima Madurai;padding-top:20px;">Formulaire d'hebregement</h1>
+        <form method="post">
+          <div  class="mb-4 mt-5 ml-5 mr-5">
+              <input style="height:50px"  type="text"  name="nom" id="inputEmail" class="form-control" autocomplete="email" required autofocus class="form-control" id="exampleInputEmail1" placeholder="Nom et prenom"  >
+            </div>
+            <div class="mb-4 ml-5 mr-5">
+              <input style="height:50px" type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="email" aria-describedby="emailHelp" autocomplete="current-password" required>
+            </div>
+            <div class="mb-4 ml-5 mr-5">
+              <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="type" placeholder="type de site" aria-describedby="typeHelp" autocomplete="current-password" required>
+            </div>
+
+            <div class="mb-4 ml-5 mr-5">
+              <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="domaine" placeholder="nom de domaine" aria-describedby="typeHelp" autocomplete="current-password" required>
+            </div>
+           
+                  <div  class="mb-4  ml-5 mr-5">
+          <button style="height:50px; width:100%; font-size:24px;font-family:Arima Madurai;" type="submit" class="  btn btn-success">Enregistré</button>
+            </div>
+        </form>
+    </div>
+    </div> 
+
+{% include 'bases/slidebar.html.twig' %}
+
+{% endblock %}
