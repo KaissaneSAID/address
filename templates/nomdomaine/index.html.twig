@@ -1,0 +1,257 @@
+    {% block body %}
+    <style>
+
+
+    .mains{
+        background-color: white;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top:5%;
+        text-align:center;
+                box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+
+    }
+    .hidden {
+        display: none;
+      }
+
+    </style>
+    {% include 'bases/header.html.twig' %}
+
+        <div style="float:right; margin-right:20px;font-size:20px;" class="container-xl col-md-9" style="font-family: 'Roboto', sans-serif;">
+        
+              <div class="mains pb-4">
+        
+        
+
+            <h1  style="color:#0B6DB8;font-family:Arima Madurai;padding-top:20px;">Formulaire de demande de nom de domaine internet</h1>
+            <form method="post">
+              <div  class="mb-4 mt-5 ml-5 mr-5">
+                  <input style="height:50px"  type="text"  name="nomDomaine" id="inputEmail" class="form-control" autocomplete="email" required autofocus class="form-control" id="exampleInputEmail1" placeholder="Nom du domaine complet"  >
+                </div>
+                <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;">1: Organisme demandeur</h3>
+
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="NomDemande" placeholder="Nom Complet" aria-describedby="emailHelp" autocomplete="current-password" required>
+                </div>
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="sigleDemande" placeholder="Sigle(facultatif)" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="addresseDemande" placeholder="Adresse Complete" aria-describedby="typeHelp" autocomplete="current-password" required>
+                </div>
+                <div style="float:left" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="villeDemande" placeholder="Ville" aria-describedby="typeHelp" autocomplete="current-password" required>
+                </div>
+                <div style="float:right" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="boiteDemande" placeholder="Boite Postal" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <input  style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="paysDemande" placeholder="Pays" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <label style="float:left">Forme Juridique :</label>
+
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridique" onchange="toggleInput()">
+                  <label>Société</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridique" onchange="toggleInput()">
+                  
+                  <label>Université</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridique" onchange="toggleInput()">
+                  <label>Association</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridique" onchange="toggleInput()">
+                  <label>Organisme</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="autre" type="radio" name="juridique" onchange="toggleInput()" >
+                  <label>Autre</label>
+
+                <div id="autreInput" class="hidden"  style="" class="mb-4  ml-5 mr-5">
+                  <input   style="  margin-bottom:10px; height:50px" type="text" class="form-control" id="exampleInputEmail1" name="juridique" id="autreText" placeholder="Preciser" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                </div>
+                
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <label style="float:left">Cochez cette case si l'Organisme effectuant la demande est différent de 1 :</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="autreCheckbox" type="checkbox" name="juridique" onchange="toggleInput()" >
+                  <label>voir plus</label>
+
+                </div>
+                
+              
+                <div id="autreInputs" class="hidden">
+                      <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;">2: Organisme effectuant la demande si différent de 1</h3>
+
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="NomDif" placeholder="Nom Complet" aria-describedby="emailHelp" autocomplete="current-password" required>
+                </div>
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="sigleDif" placeholder="Sigle(facultatif)" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="addresseDif" placeholder="Adresse Complete" aria-describedby="typeHelp" autocomplete="current-password" required>
+                </div>
+                <div style="float:left" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="villeDif" placeholder="Ville" aria-describedby="typeHelp" autocomplete="current-password" required>
+                </div>
+                <div style="float:right" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="boiteDif" placeholder="Boite Postal" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <input  style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="paysDif" placeholder="Pays" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <label style="float:left">Forme Juridique :</label>
+
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
+                  <label>Société</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
+                  
+                  <label>Université</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
+                  <label>Association</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
+                  <label>Organisme</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="autres" type="radio" name="juridiques" onchange="checkInput()" >
+                  <label>Autre</label>
+
+                <div id="autreInp" class="hidden"  style="" class="mb-4 ml-5 mr-5">
+                  <input   style="   height:50px" type="text" class="form-control" id="exampleInputEmail1" name="juridiques" id="autreText" placeholder="Preciser" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                </div>
+                
+                </div>
+              <div >
+                <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;"> 3 Contact Administratif(<i style="font-size:23px;">Responsable juridique du nom de domaine de la rubrique 1</i>)</h3>
+
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="NomAdmini" placeholder="Nom Complet" aria-describedby="emailHelp" autocomplete="current-password" required>
+                </div>
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="fonctionAdmini" placeholder="Fonction dans l'organisme" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+
+              
+                <div style="float:left" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="telfixeAdmini" placeholder="Téléphone Fixe" aria-describedby="typeHelp" autocomplete="current-password" required>
+                </div>
+                <div style="float:right" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="telmobileAdmini" placeholder="Téléphone Mobile" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <input  style="height:50px" type="email" class="form-control" id="exampleInputEmail1" name="emailadmin" placeholder="adresse email" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+              </div>
+              <div >
+                <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;"> 4: Contact Technique</h3>
+
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="NomTec" placeholder="Nom Complet" aria-describedby="emailHelp" autocomplete="current-password" required>
+                </div>
+                <div class="mb-4 ml-5 mr-5">
+                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="fonctionTec" placeholder="Fonction dans l'organisme" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+
+              
+                <div style="float:left" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="telfixeTec" placeholder="Téléphone Fixe" aria-describedby="typeHelp" autocomplete="current-password" required>
+                </div>
+                <div style="float:right" class="mb-4 ml-5 mr-5">
+                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="telmobileTec" placeholder="Téléphone Mobile" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                <div style="" class="mb-4 ml-5 mr-5">
+                  <input  style="height:50px" type="email" class="form-control" id="exampleInputEmail1" name="emailTec" placeholder="adresse email" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+              </div>
+              <div style="" class="mb-4 ml-5 mr-5">
+
+                <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;"> 5: Pièces justificatives(<i style="font-size:23px;">présenter toute pièce justifiant l'existence de l'organisme aux comores</i>)</h3>
+
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="checkbox" name="statuts" onchange="checkInput()">
+                  <label>Statuts</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="checkbox" name="recepisse" onchange="checkInput()">
+                  
+                  <label>Récépissé</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="checkbox" name="patente" onchange="checkInput()">
+                  <label>Patente</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="checkbox" name="decret" onchange="checkInput()">
+                  <label>Décret</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;"  type="checkbox" name="arrete" onchange="checkInput()" >
+                  <label>Arrêté</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;"  type="checkbox" name="autorisation" onchange="checkInput()" >
+                  <label>Autorisation</label>
+                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="checkjustify"  type="checkbox" name="autre" onchange="checkInput()" >
+                  <label>Autre</label>
+                <div id="autrechamps" class="hidden"  style="" class="mb-4 ml-5 mr-5">
+                  <input   style="  margin-bottom:10px;  height:50px" type="text" class="form-control" id="exampleInputEmail1" name="juridiques" id="autreText" placeholder="Preciser" aria-describedby="typeHelp" autocomplete="current-password" >
+                </div>
+                </div>
+                  <div style="" class="mb-4 ml-5 mr-5">
+                    <input  style="height:50px" type="file" class="form-control" id="exampleInputEmail1" name="fichier" aria-describedby="typeHelp" autocomplete="current-password" >
+                  </div>
+                <div class="mb-4 ml-5 mr-5">
+                    <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;"> 6: Facture adresser à: </h3>
+
+                  <input checked  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="facture">
+                  <label>Organisme demandeur(1)</label>
+                  <input   style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="facture" >
+                  
+                  <label>Organisme effectuant la demande(2)</label>
+                </div>
+               
+                <div  class="mb-4 mt-4  ml-5 mr-5">
+                  <button style="height:50px; width:100%; font-size:24px;font-family:Arima Madurai;" type="submit" class="  btn btn-success">Enregistré</button>
+                </div>
+            </form>
+        </div>
+        </div> 
+    <script>
+
+        const autreCheckbox = document.getElementById('autreCheckbox');
+        const autreInp = document.getElementById('autreInputs');
+
+        autreCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                autreInp.classList.remove('hidden');
+            } else {
+                autreInp.classList.add('hidden');
+            }
+        });
+        
+
+    function toggleInput() {
+      var autreInput = document.getElementById("autreInput");
+      var autreText = document.getElementById("autreInput");
+      
+      if (document.getElementById("autre").checked) {
+        autreInput.classList.remove("hidden");
+        autreText.required = true; // Si vous souhaitez rendre le champ texte obligatoire
+      } else {
+        autreInput.classList.add("hidden");
+        autreText.required = false; // Pour retirer la contrainte de champ obligatoire
+      }
+    }
+    function checkInput() {
+      var autreInput = document.getElementById("autreInp");
+      
+      if (document.getElementById("autres").checked) {
+        autreInput.classList.remove("hidden");
+      } else {
+        autreInput.classList.add("hidden");
+      }
+    }
+
+    const Checkbox = document.getElementById('checkjustify');
+        const autre = document.getElementById('autrechamps');
+
+        Checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                autre.classList.remove('hidden');
+            } else {
+                autre.classList.add('hidden');
+            }
+        });
+    </script>
+    {% include 'bases/slidebar.html.twig' %}
+
+    {% endblock %}

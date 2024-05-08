@@ -11,7 +11,7 @@ class HeberegementController extends AbstractController
     #[Route('/heberegement', name: 'app_heberegement')]
     public function index(): Response
     {
-        return $this->render('heberegement/index.html.twig', [
+        return $this->render('nomdomaine/index.html.twig', [
             'controller_name' => 'HeberegementController',
         ]);
     }
