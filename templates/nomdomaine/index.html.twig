@@ -25,7 +25,7 @@
         
 
             <h1  style="color:#0B6DB8;font-family:Arima Madurai;padding-top:20px;">Formulaire de demande de nom de domaine internet</h1>
-            <form method="post">
+            <form method="post" action="{{ path('app_forminsert') }}">
               <div  class="mb-4 mt-5 ml-5 mr-5">
                   <input style="height:50px"  type="text"  name="nomDomaine" id="inputEmail" class="form-control" autocomplete="email" required autofocus class="form-control" id="exampleInputEmail1" placeholder="Nom du domaine complet"  >
                 </div>
@@ -70,57 +70,7 @@
                 </div>
                 </div>
                 
-                <div style="" class="mb-4 ml-5 mr-5">
-                  <label style="float:left">Cochez cette case si l'Organisme effectuant la demande est différent de 1 :</label>
-                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="autreCheckbox" type="checkbox" name="juridique" onchange="toggleInput()" >
-                  <label>voir plus</label>
-
-                </div>
-                
-              
-                <div id="autreInputs" class="hidden">
-                      <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;">2: Organisme effectuant la demande si différent de 1</h3>
-
-                <div class="mb-4 ml-5 mr-5">
-                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="NomDif" placeholder="Nom Complet" aria-describedby="emailHelp" autocomplete="current-password" required>
-                </div>
-                <div class="mb-4 ml-5 mr-5">
-                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="sigleDif" placeholder="Sigle(facultatif)" aria-describedby="typeHelp" autocomplete="current-password" >
-                </div>
-
-                <div class="mb-4 ml-5 mr-5">
-                  <input style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="addresseDif" placeholder="Adresse Complete" aria-describedby="typeHelp" autocomplete="current-password" required>
-                </div>
-                <div style="float:left" class="mb-4 ml-5 mr-5">
-                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="villeDif" placeholder="Ville" aria-describedby="typeHelp" autocomplete="current-password" required>
-                </div>
-                <div style="float:right" class="mb-4 ml-5 mr-5">
-                  <input size="40" style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="boiteDif" placeholder="Boite Postal" aria-describedby="typeHelp" autocomplete="current-password" >
-                </div>
-                <div style="" class="mb-4 ml-5 mr-5">
-                  <input  style="height:50px" type="text" class="form-control" id="exampleInputEmail1" name="paysDif" placeholder="Pays" aria-describedby="typeHelp" autocomplete="current-password" >
-                </div>
-                <div style="" class="mb-4 ml-5 mr-5">
-                  <label style="float:left">Forme Juridique :</label>
-
-                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
-                  <label>Société</label>
-                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
-                  
-                  <label>Université</label>
-                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
-                  <label>Association</label>
-                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" type="radio" name="juridiques" onchange="checkInput()">
-                  <label>Organisme</label>
-                  <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="autres" type="radio" name="juridiques" onchange="checkInput()" >
-                  <label>Autre</label>
-
-                <div id="autreInp" class="hidden"  style="" class="mb-4 ml-5 mr-5">
-                  <input   style="   height:50px" type="text" class="form-control" id="exampleInputEmail1" name="juridiques" id="autreText" placeholder="Preciser" aria-describedby="typeHelp" autocomplete="current-password" >
-                </div>
-                </div>
-                
-                </div>
+             
               <div >
                 <h3  style="color:#0B6DB8;font-family:Arima Madurai;padding-bottom:10px;"> 3 Contact Administratif(<i style="font-size:23px;">Responsable juridique du nom de domaine de la rubrique 1</i>)</h3>
 
@@ -183,7 +133,7 @@
                   <input  style="transform:scale(1.5);margin-left:8px;  display:inline;" id="checkjustify"  type="checkbox" name="autre" onchange="checkInput()" >
                   <label>Autre</label>
                 <div id="autrechamps" class="hidden"  style="" class="mb-4 ml-5 mr-5">
-                  <input   style="  margin-bottom:10px;  height:50px" type="text" class="form-control" id="exampleInputEmail1" name="juridiques" id="autreText" placeholder="Preciser" aria-describedby="typeHelp" autocomplete="current-password" >
+                  <input   style="  margin-bottom:10px;  height:50px" type="text" class="form-control" id="exampleInputEmail1" name="autre" id="autreText" placeholder="Preciser" aria-describedby="typeHelp" autocomplete="current-password" >
                 </div>
                 </div>
                   <div style="" class="mb-4 ml-5 mr-5">
@@ -200,7 +150,7 @@
                 </div>
                
                 <div  class="mb-4 mt-4  ml-5 mr-5">
-                  <button style="height:50px; width:100%; font-size:24px;font-family:Arima Madurai;" type="submit" class="  btn btn-success">Enregistré</button>
+                  <button style="height:50px; width:100%; font-size:24px;font-family:Arima Madurai;" type="submit" class="btn btn-success">Enregistré</button>
                 </div>
             </form>
         </div>
